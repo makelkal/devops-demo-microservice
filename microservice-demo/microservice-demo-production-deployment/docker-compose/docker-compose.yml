@@ -1,0 +1,30 @@
+version: '2'
+services:
+  eureka:
+    image: eekamak/eureka
+    expose:
+      - "8761"
+  customer:
+    image: 131.207.26.214:5000/customer:$TAG
+    links:
+     - eureka
+    expose:
+    - "8080"
+  catalog:
+    image: 131.207.26.214:5000/catalog:$TAG
+    links:
+     - eureka
+    expose:
+    - "8080"
+  order:
+    image: 131.207.26.214:5000/order:$TAG
+    links:
+     - eureka
+    expose:
+    - "8080"
+  zuul:
+    image: 131.207.26.214:5000/zuul:$TAG
+    links:
+     - eureka
+    ports:
+      - "8080:8080"
