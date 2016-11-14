@@ -15,7 +15,7 @@ general:
 production:
   go_cd_agent_props:
     - ansible
-  trigger_mode: automatic
+  trigger_mode: manual
   type: parallel
   commands:
     - tasks:
