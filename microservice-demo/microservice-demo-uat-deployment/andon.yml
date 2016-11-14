@@ -1,0 +1,49 @@
+general:
+  whitelist: true
+  pipeline_base_name: UAT Deployment
+  dependency:
+   - Catalog [PostStage]
+   - Customer [PostStage]
+   - Order [IntegrationTests]
+   - Zuul [Compile]
+
+pre_stage:
+  go_cd_agent_props:
+    - java:8
+    - maven
+  custom_cmd:
+    - sudo docker tag catalog:$GO_DEPENDENCY_LABEL_CATALOG_MASTER 131.207.26.214:5000/catalog:UAT.$GO_PIPELINE_COUNTER
+    - sudo docker push 131.207.26.214:5000/catalog:UAT.$GO_PIPELINE_COUNTER
+    - sudo docker tag customer:$GO_DEPENDENCY_LABEL_CUSTOMER_MASTER 131.207.26.214:5000/customer:UAT.$GO_PIPELINE_COUNTER
+    - sudo docker push 131.207.26.214:5000/customer:UAT.$GO_PIPELINE_COUNTER
+    - sudo docker tag order:$GO_DEPENDENCY_LABEL_ORDER_MASTER 131.207.26.214:5000/order:UAT.$GO_PIPELINE_COUNTER
+    - sudo docker push 131.207.26.214:5000/order:UAT.$GO_PIPELINE_COUNTER
+#    - sudo docker tag eureka:latest eekamak/eureka:latest
+#    - sudo docker push eekamak/eureka:latest
+    - sudo docker tag zuul:$GO_DEPENDENCY_LABEL_ZUUL_MASTER 131.207.26.214:5000/zuul:UAT.$GO_PIPELINE_COUNTER
+    - sudo docker push 131.207.26.214:5000/zuul:UAT.$GO_PIPELINE_COUNTER
+production:
+  go_cd_agent_props:
+    - ansible
+  trigger_mode: automatic
+  type: parallel
+  commands:
+    - tasks:
+      - cmd: curl 131.207.26.213:8080/jenkins/job/DevOpsDemoUatDeployment/buildWithParameters?ImageTag=$GO_DEPENDENCY_LABEL_UAT_DEPLOYMENT_MASTER
+#        build_path: .
+#      - cmd: docker 1
+#      job_name: AnsibleJob
+#    - tasks:
+#      - cmd: mvn 2
+#        build_path: .
+#      - cmd: docker 2
+#        build_path: .
+#      job_name: RunJob
+
+#post_stage:
+#  go_cd_agent_props:
+#    - java:8
+#    - maven
+#  custom_cmd:
+#    - true
+#    - true
