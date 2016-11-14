@@ -46,13 +46,13 @@ post_stage:
     - maven
   custom_cmd:
 #    - sudo echo foo
-    - sudo docker tag catalog:$GO_DEPENDENCY_LABEL_CATALOG_MASTER 131.207.26.214:5000/catalog:$GO_PIPELINE_COUNTER.$GO_STAGE_COUNTER
-    - sudo docker push 131.207.26.214:5000/catalog:$GO_PIPELINE_COUNTER.$GO_STAGE_COUNTER
-    - sudo docker tag customer:$GO_DEPENDENCY_LABEL_CUSTOMER_MASTER 131.207.26.214:5000/customer:$GO_PIPELINE_COUNTER.$GO_STAGE_COUNTER
-    - sudo docker push 131.207.26.214:5000/customer:$GO_PIPELINE_COUNTER.$GO_STAGE_COUNTER
-    - sudo docker tag order:$GO_DEPENDENCY_LABEL_ORDER_MASTER 131.207.26.214:5000/order:$GO_PIPELINE_COUNTER.$GO_STAGE_COUNTER
-    - sudo docker push 131.207.26.214:5000/order:$GO_PIPELINE_COUNTER.$GO_STAGE_COUNTER
+    - sudo docker tag catalog:$GO_DEPENDENCY_LABEL_CATALOG_MASTER 131.207.26.214:5000/catalog:$GO_PIPELINE_COUNTER
+    - sudo docker push 131.207.26.214:5000/catalog:$GO_PIPELINE_COUNTER
+    - sudo docker tag customer:$GO_DEPENDENCY_LABEL_CUSTOMER_MASTER 131.207.26.214:5000/customer:$GO_PIPELINE_COUNTER
+    - sudo docker push 131.207.26.214:5000/customer:$GO_PIPELINE_COUNTER
+    - sudo docker tag order:$GO_DEPENDENCY_LABEL_ORDER_MASTER 131.207.26.214:5000/order:$GO_PIPELINE_COUNTER
+    - sudo docker push 131.207.26.214:5000/order:$GO_PIPELINE_COUNTER
 #    - sudo docker tag eureka:latest eekamak/eureka:latest
 #    - sudo docker push eekamak/eureka:latest
-    - sudo docker tag zuul:$GO_DEPENDENCY_LABEL_ZUUL_MASTER 131.207.26.214:5000/zuul:$GO_PIPELINE_COUNTER.$GO_STAGE_COUNTER
-    - sudo docker push 131.207.26.214:5000/zuul:$GO_PIPELINE_COUNTER.$GO_STAGE_COUNTER
+    - sudo docker tag zuul:$GO_DEPENDENCY_LABEL_ZUUL_MASTER 131.207.26.214:5000/zuul:$GO_PIPELINE_COUNTER
+    - sudo docker push 131.207.26.214:5000/zuul:$GO_PIPELINE_COUNTER
