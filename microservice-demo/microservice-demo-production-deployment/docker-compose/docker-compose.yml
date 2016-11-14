@@ -1,7 +1,7 @@
 version: '2'
 services:
   eureka:
-    image: eekamak/eureka
+    image: 131.207.26.214:5000/eureka:latest
     expose:
       - "8761"
   customer:
@@ -27,4 +27,4 @@ services:
     links:
      - eureka
     ports:
-      - "8080:8080"
+      - "80:8080"
