@@ -19,7 +19,7 @@ production:
   type: parallel
   commands:
     - tasks:
-      - cmd: echo foo
+      - cmd: curl 131.207.26.213:8080/jenkins/job/TestingConnections/buildWithParameters?par=testingFromGoCD1234
 #        build_path: .
 #      - cmd: docker 1
 #      job_name: AnsibleJob
