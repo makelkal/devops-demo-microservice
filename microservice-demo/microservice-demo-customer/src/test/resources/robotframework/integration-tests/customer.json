@@ -1,0 +1,7 @@
+{
+  "name" : "${NAME}",
+  "firstname" : "${FIRSTNAME}",
+  "email" : "${EMAIL}",
+  "street" : "${STREET}",
+  "city" : "${CITY}"
+}

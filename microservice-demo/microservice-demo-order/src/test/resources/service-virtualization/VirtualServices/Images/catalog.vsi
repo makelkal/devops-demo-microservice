@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+
+<serviceImage id="2" name="catalog" created="2016-07-06.14:08:27.237" lastModified="2016-07-06.14:13:32.724" version="9.1.0" buildNumber="9.1.0.399">
+<st>
+<t id="1" nd="true">
+<sp>
+<t id="5">
+<rq id="6" op="GET /catalog/" tl="EXACT">
+<at>
+<p n="HTTP-Segment-Attr-0">catalog</p>
+<p n="HTTP-Segment-Attr-1"></p>
+</at>
+<m>
+<p n="HTTP-Method">GET</p>
+<p n="HTTP-URI">/catalog/</p>
+<p n="HTTP-Version">HTTP/1.1</p>
+<p n="Accept">application/hal+json</p>
+<p n="User-Agent">Java/1.8.0_51</p>
+<p n="Host">localhost:9000</p>
+</m>
+</rq>
+<rs>
+<rp id="7" t="41">
+<m>
+<p n="HTTP-Response-Code">200</p>
+<p n="HTTP-Response-Code-Text">OK</p>
+<p n="Server">Apache-Coyote/1.1</p>
+<p n="X-Application-Context">catalog:8080</p>
+<p n="Content-Type">application/hal+json;charset=UTF-8</p>
+<p n="Date">{{=httpNow()}}</p>
+</m>
+<bd chs="UTF-8">{&#10;  &quot;_embedded&quot; : {&#10;    &quot;catalog&quot; : [ {&#10;      &quot;id&quot; : 1,&#10;      &quot;name&quot; : &quot;iPod&quot;,&#10;      &quot;price&quot; : 42.0,&#10;      &quot;_links&quot; : {&#10;        &quot;self&quot; : {&#10;          &quot;href&quot; : &quot;http://localhost:9000/catalog/1&quot;&#10;        },&#10;        &quot;item&quot; : {&#10;          &quot;href&quot; : &quot;http://localhost:9000/catalog/1&quot;&#10;        }&#10;      }&#10;    }, {&#10;      &quot;id&quot; : 2,&#10;      &quot;name&quot; : &quot;iPod touch&quot;,&#10;      &quot;price&quot; : 21.0,&#10;      &quot;_links&quot; : {&#10;        &quot;self&quot; : {&#10;          &quot;href&quot; : &quot;http://localhost:9000/catalog/2&quot;&#10;        },&#10;        &quot;item&quot; : {&#10;          &quot;href&quot; : &quot;http://localhost:9000/catalog/2&quot;&#10;        }&#10;      }&#10;    }, {&#10;      &quot;id&quot; : 3,&#10;      &quot;name&quot; : &quot;iPod nano&quot;,&#10;      &quot;price&quot; : 1.0,&#10;      &quot;_links&quot; : {&#10;        &quot;self&quot; : {&#10;          &quot;href&quot; : &quot;http://localhost:9000/catalog/3&quot;&#10;        },&#10;        &quot;item&quot; : {&#10;          &quot;href&quot; : &quot;http://localhost:9000/catalog/3&quot;&#10;        }&#10;      }&#10;    }, {&#10;      &quot;id&quot; : 4,&#10;      &quot;name&quot; : &quot;Apple TV&quot;,&#10;      &quot;price&quot; : 100.0,&#10;      &quot;_links&quot; : {&#10;        &quot;self&quot; : {&#10;          &quot;href&quot; : &quot;http://localhost:9000/catalog/4&quot;&#10;        },&#10;        &quot;item&quot; : {&#10;          &quot;href&quot; : &quot;http://localhost:9000/catalog/4&quot;&#10;        }&#10;      }&#10;    } ]&#10;  },&#10;  &quot;_links&quot; : {&#10;    &quot;self&quot; : {&#10;      &quot;href&quot; : &quot;http://localhost:9000/catalog&quot;&#10;    },&#10;    &quot;profile&quot; : {&#10;      &quot;href&quot; : &quot;http://localhost:9000/profile/catalog&quot;&#10;    },&#10;    &quot;search&quot; : {&#10;      &quot;href&quot; : &quot;http://localhost:9000/catalog/search&quot;&#10;    }&#10;  },&#10;  &quot;page&quot; : {&#10;    &quot;size&quot; : 20,&#10;    &quot;totalElements&quot; : 4,&#10;    &quot;totalPages&quot; : 1,&#10;    &quot;number&quot; : 0&#10;  }&#10;}</bd>
+</rp>
+</rs>
+</t>
+</sp>
+<rq id="8" op="GET /catalog/" tl="SIGNATURE">
+<at>
+<p n="HTTP-Segment-Attr-0">catalog</p>
+<p n="HTTP-Segment-Attr-1"></p>
+</at>
+<m>
+<p n="HTTP-Method">GET</p>
+<p n="HTTP-URI">/catalog/</p>
+<p n="HTTP-Version">HTTP/1.1</p>
+<p n="Accept">application/hal+json</p>
+<p n="User-Agent">Java/1.8.0_51</p>
+<p n="Host">localhost:9000</p>
+</m>
+</rq>
+<rs>
+<rp id="9" t="41">
+<m>
+<p n="HTTP-Response-Code">200</p>
+<p n="HTTP-Response-Code-Text">OK</p>
+<p n="Server">Apache-Coyote/1.1</p>
+<p n="X-Application-Context">catalog:8080</p>
+<p n="Content-Type">application/hal+json;charset=UTF-8</p>
+<p n="Date">{{=httpNow()}}</p>
+</m>
+<bd chs="UTF-8">{&quot;_embedded&quot;:{&quot;catalog&quot;:[{&quot;id&quot;:1,&quot;name&quot;:&quot;iPod&quot;,&quot;price&quot;:42.0,&quot;_links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;http://localhost:9000/catalog/1&quot;},&quot;item&quot;:{&quot;href&quot;:&quot;http://localhost:9000/catalog/1&quot;}}},{&quot;id&quot;:2,&quot;name&quot;:&quot;iPod touch&quot;,&quot;price&quot;:21.0,&quot;_links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;http://localhost:9000/catalog/2&quot;},&quot;item&quot;:{&quot;href&quot;:&quot;http://localhost:9000/catalog/2&quot;}}},{&quot;id&quot;:3,&quot;name&quot;:&quot;iPod nano&quot;,&quot;price&quot;:1.0,&quot;_links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;http://localhost:9000/catalog/3&quot;},&quot;item&quot;:{&quot;href&quot;:&quot;http://localhost:9000/catalog/3&quot;}}},{&quot;id&quot;:4,&quot;name&quot;:&quot;Apple TV&quot;,&quot;price&quot;:100.0,&quot;_links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;http://localhost:9000/catalog/4&quot;},&quot;item&quot;:{&quot;href&quot;:&quot;http://localhost:9000/catalog/4&quot;}}}]},&quot;_links&quot;:{&quot;self&quot;:{&quot;href&quot;:&quot;http://localhost:9000/catalog&quot;},&quot;profile&quot;:{&quot;href&quot;:&quot;http://localhost:9000/profile/catalog&quot;},&quot;search&quot;:{&quot;href&quot;:&quot;http://localhost:9000/catalog/search&quot;}},&quot;page&quot;:{&quot;size&quot;:20,&quot;totalElements&quot;:4,&quot;totalPages&quot;:1,&quot;number&quot;:0}}</bd>
+</rp>
+</rs>
+</t>
+</st>
+<ucrr>
+<rp id="4" t="0">
+<m>
+<p n="HTTP-Response-Code">404</p>
+<p n="HTTP-Response-Code-Text">Not Found</p>
+<p n="Server">LISA/Virtual-Environment-Server</p>
+<p n="Date">{{=httpNow()}}</p>
+<p n="X-Powered-By">LISA/{{=lisaVersionString()}}</p>
+<p n="Content-Type">text/html</p>
+</m>
+<bd chs="UTF-8">&lt;html&gt;&#10;    &lt;head&gt;&lt;title&gt;404 Not Found&lt;/title&gt;&lt;/head&gt;&#10;    &lt;body&gt;&#10;        &lt;h1&gt;Not Found&lt;/h1&gt;&#10;        &lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;&#10;        &lt;hr/&gt;&#10;        &lt;p&gt;&lt;i&gt;The DevTest VSE service could not match your request to a recorded request.&amp;nbsp; Consider expanding your service image.&lt;/i&gt;&lt;/p&gt;&#10;        &lt;br/&gt;&lt;font size=&quot;-2&quot;&gt;Produced by a DevTest virtualized web server.&lt;/font&gt;&#10;    &lt;/body&gt;&#10;&lt;/html&gt;&#10;</bd>
+</rp>
+</ucrr>
+<usrr>
+<rp id="3" t="0">
+<m>
+<p n="HTTP-Response-Code">404</p>
+<p n="HTTP-Response-Code-Text">Not Found</p>
+<p n="Server">LISA/Virtual-Environment-Server</p>
+<p n="Date">{{=httpNow()}}</p>
+<p n="X-Powered-By">LISA/{{=lisaVersionString()}}</p>
+<p n="Content-Type">text/html</p>
+</m>
+<bd chs="UTF-8">&lt;html&gt;&#10;    &lt;head&gt;&lt;title&gt;404 Not Found&lt;/title&gt;&lt;/head&gt;&#10;    &lt;body&gt;&#10;        &lt;h1&gt;Not Found&lt;/h1&gt;&#10;        &lt;p&gt;The requested URL was not found on this server.&lt;/p&gt;&#10;        &lt;hr/&gt;&#10;        &lt;p&gt;&lt;i&gt;The DevTest VSE service could not match your request to a recorded request.&amp;nbsp; Consider expanding your service image.&lt;/i&gt;&lt;/p&gt;&#10;        &lt;br/&gt;&lt;font size=&quot;-2&quot;&gt;Produced by a DevTest virtualized web server.&lt;/font&gt;&#10;    &lt;/body&gt;&#10;&lt;/html&gt;&#10;</bd>
+</rp>
+</usrr>
+</serviceImage>

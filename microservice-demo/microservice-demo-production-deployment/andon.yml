@@ -1,0 +1,39 @@
+general:
+  whitelist: true
+  pipeline_base_name: Prod Deployment
+  dependency:
+   - Microservice_Acceptance [PostStage]
+
+#pre_stage:
+#  go_cd_agent_props:
+#    - java:8
+#    - maven
+#  custom_cmd:
+#    - true
+#    - true
+
+production:
+  go_cd_agent_props:
+    - ansible
+  trigger_mode: manual
+  type: parallel
+  commands:
+    - tasks:
+      - cmd: echo foo
+#        build_path: .
+#      - cmd: docker 1
+#      job_name: AnsibleJob
+#    - tasks:
+#      - cmd: mvn 2
+#        build_path: .
+#      - cmd: docker 2
+#        build_path: .
+#      job_name: RunJob
+
+#post_stage:
+#  go_cd_agent_props:
+#    - java:8
+#    - maven
+#  custom_cmd:
+#    - true
+#    - true

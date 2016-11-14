@@ -1,0 +1,2 @@
+andonprod ansible_host=104.155.124.36 ansible_user=ilpo_paju  ansible_connection=ssh ansible_ssh_private_key_file=/etc/andon/ssh_keys/compute-engine-ssh-key
+

@@ -1,0 +1,10 @@
+version: '2'
+services:
+  eureka:
+    image: eekamak/eureka:latest
+  customer:
+    image: customer:$GO_PIPELINE_COUNTER
+    links:
+     - eureka
+    expose:
+     - "8080"

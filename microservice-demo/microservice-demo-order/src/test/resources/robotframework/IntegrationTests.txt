@@ -1,0 +1,76 @@
+*** Settings ***
+Documentation   This test verifies that a user can make an order and also that after ordering
+...             the order appers correctly at the screen 
+Library         Selenium2Library
+Test Teardown   Close All Browsers
+
+*** Test Cases ***
+Order iPod Nano
+  [Documentation]  User orders a iPod Nano for the customer
+  Given I navigate to the order form 
+    and I select a customer "Rod Johnson"
+    and iPod Nano is in the catalog
+  When I order a IPod Nano
+   and I submit the order
+  Then my order was successful
+  
+Verify Order
+  [Documentation]  After user has made an order, it is verified
+  ...              to appear correctly on the screen
+  Given I have created an order
+  When I navigate to the orders list
+  Then I can find my order 
+
+*** Keywords ***
+Open Ordering App
+	[Documentation]  Opens a new browser in selenium grid environment if there is specified
+	...              the REMOTE_URL variable, that denotes the selenium hub URL.
+	...              Otherwise opens browser in the user's desktop.  
+	${remote}=  Get Variable Value  ${REMOTE_URL}  None
+	Run Keyword If  '${remote}'=='None'  Open Browser  ${SUT_URL}  ${BROWSER}    None    
+	Run Keyword Unless  '${remote}'=='None'  Open Browser  ${SUT_URL}  ${BROWSER}    None  ${REMOTE_URL}    
+
+I navigate to the order form
+    Open Ordering App
+    Wait Until Page Contains  Order : View all  30 sec
+    Click Link  Add Order
+    Wait Until Page Contains  Order : Add  30 sec
+
+I have created an order
+  Log  "Order has been created"
+  
+I navigate to the orders list
+  Open Ordering App 
+  Wait Until Page Contains  Order : View all  30 sec
+  
+I can find my order
+  [Documentation]  Goes to the order details from the main page view 
+  ...              and checks all the order details there
+  Click Link  xpath=/html/body/div/div[2]/table/tbody/tr[1]/td[1]/a
+  Wait Until Page Contains  Order
+  ${name}=  Get Text  xpath=/html/body/div/div[2]/div[1]/div[2]
+  Should Be Equal  ${name}  Rod Johnson
+  ${quantity}=  Get Text  xpath=/html/body/div/div[2]/div[5]/div[1]
+  Should be Equal  ${quantity}  1
+  ${item}=  Get Text  xpath=/html/body/div/div[2]/div[5]/div[2]
+  Should be Equal  ${item}  iPod nano
+  ${price}=  Get Text  xpath=/html/body/div/div[2]/div[5]/div[3]
+  Should be Equal  ${price}  1.0
+   
+I select a customer "${customer}"
+  Select From List By Label  customerId  ${customer}
+  
+I pod Nano is in the catalog
+  Log  "IPod Nano in the catalog"
+  
+I order a IPod Nano
+  Click Button  addLine
+  Wait Until Page Contains Element  orderLine0.itemId
+  Input Text  orderLine0.count  1
+  Select From List By Label  orderLine0.itemId  iPod nano
+  
+I submit the order
+  Click Button  submit
+
+My order was successful
+  Wait Until Page Contains  Success  30 sec 

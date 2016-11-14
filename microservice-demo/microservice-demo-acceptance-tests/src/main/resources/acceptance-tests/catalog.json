@@ -1,0 +1,4 @@
+{
+  "name" : "${CATALOG_ITEM}",
+  "price" : "${CATALOG_PRICE}"
+}

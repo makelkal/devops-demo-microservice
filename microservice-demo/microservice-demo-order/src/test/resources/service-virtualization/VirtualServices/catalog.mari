@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+<MarInfo>
+<name>catalog</name>
+<type>VIRTUAL_SERVICE</type>
+<projectRoot>service-virtualization</projectRoot>
+<optimized>true</optimized>
+<deployInfo>
+    <PrimaryAsset>VirtualServices/catalog.vsm</PrimaryAsset>
+    <Configuration>Configs/project.config</Configuration>
+    <ConcurrentCapacity>1</ConcurrentCapacity>
+    <ThinkTimePercent>100</ThinkTimePercent>
+    <AutoRestart>true</AutoRestart>
+    <StartOnDeploy>true</StartOnDeploy>
+</deployInfo>
+</MarInfo>

@@ -1,0 +1,11 @@
+compile_and_unit_tests:
+  build_cmd: mvn clean -Dmaven.test.skip install
+  build_path: .
+  go_cd_agent_props:
+    - java:8
+    - maven
+  sonarqube: true
+  
+docker_image_build_for_integration_testing:
+  build_path: .
+  dockerfile_name: Dockerfile

@@ -1,0 +1,21 @@
+version: '2'
+services:
+  eureka:
+    build: ../../../../.
+    image: eureka
+    expose:
+      - "8761"
+#  customer:
+#    build: ../../../../.
+#    image: customer
+#    links:
+#     - eureka
+#    ports:
+#      - "9001:8080"
+  catalog:
+    build: ../../../../.
+    image: catalog
+    links:
+     - eureka
+    ports:
+     - "9002:8080"

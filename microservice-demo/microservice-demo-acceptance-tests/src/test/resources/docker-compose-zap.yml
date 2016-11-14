@@ -1,0 +1,12 @@
+version: '2'
+services:
+  zap:
+    image: owasp/zap2docker-stable
+    expose:
+     - "8000"
+    command: zap-x.sh -daemon -host 0.0.0.0 -port 8000 -config api.disablekey=true
+    networks:
+     - andon-network
+networks:
+  andon-network:
+   driver: bridge

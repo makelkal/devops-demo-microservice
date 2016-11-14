@@ -1,0 +1,36 @@
+version: '2'
+services:
+  eureka:
+    image: eekamak/eureka
+    expose:
+      - "8761"
+  customer:
+    image: eekamak/customer
+    links:
+     - eureka
+    expose:
+    - "8080"
+  catalog:
+    image: eekamak/catalog
+    links:
+     - eureka
+    expose:
+    - "8080"
+  order:
+    image: eekamak/order
+    links:
+     - eureka
+    expose:
+    - "8080"
+  zuul:
+    image: eekamak/zuul
+    links:
+     - eureka
+    ports:
+      - "8080:8080"
+#  turbine:
+#    image: eekamak/turbine
+#    links:
+#     - eureka
+#    expose:
+#      - "8989"

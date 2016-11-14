@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.tieto</groupId>
+	<artifactId>microservice-demo-acceptance-tests</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>Microservice Acceptance</name>
+	<description>microservice tests</description>
+
+<properties>
+       <robot.browser>chrome</robot.browser>                           <!-- Local default browser -->
+       <robot.tag></robot.tag>
+       <robot.remote_url>False</robot.remote_url>                        <!-- Selenium GRID hub address -->
+       <robot.main.url>http://localhost:8080</robot.main.url>              <!-- SUT -->
+       <robot.order.url>http://localhost:8080/order/</robot.order.url>              <!-- SUT -->
+       <robot.customer_rest_url>http://localhost:9001</robot.customer_rest_url>
+       <robot.catalog_rest_url>http://localhost:9002</robot.catalog_rest_url>
+	   <robot.desired_capabilities>None</robot.desired_capabilities>
+   </properties>
+
+ <dependencies>
+    <dependency>
+        <groupId>com.github.markusbernhardt</groupId>
+        <artifactId>robotframework-selenium2library-java</artifactId>
+        <version>1.4.0.8</version>
+        <scope>test</scope>
+</dependency>
+  </dependencies>
+  
+  <profiles>
+    <profile>
+      <id>robot</id>
+    
+		  <build>
+		    <plugins>
+		      <plugin>
+		          <groupId>org.apache.maven.plugins</groupId>
+		          <artifactId>maven-compiler-plugin</artifactId>
+		          <version>3.1</version>
+		          <configuration>
+		              <encoding>UTF-8</encoding>
+		              <source>1.8</source>
+		              <target>1.8</target>
+		          </configuration>
+		        </plugin>
+		        <plugin>
+		            <groupId>org.apache.maven.plugins</groupId>
+		            <artifactId>maven-surefire-plugin</artifactId>
+		            <version>2.19.1</version>
+		            <configuration>
+		              <skipTests>true</skipTests>
+		            </configuration>
+		      </plugin>
+		        <plugin>
+		          <groupId>org.robotframework</groupId>
+		          <artifactId>robotframework-maven-plugin</artifactId>
+		          <version>1.4.6</version>
+		          <executions>
+					  <execution>
+					  <id>selenium</id>
+					  <phase>integration-test</phase>
+					  <goals><goal>run</goal></goals>
+				  </execution>
+		            <!--execution>
+		              <goals>
+		                <goal>run</goal>
+		              </goals>
+		            </execution-->
+		          </executions>
+		          <configuration>
+		            <testCasesDirectory>${project.basedir}/src/main/resources</testCasesDirectory>
+		            <extraPathDirectories>
+		              <extraPathDirectory>${project.basedir}/src/test/resources/libraries</extraPathDirectory>
+		            </extraPathDirectories>
+		            <includes_cli>${robot.tag}</includes_cli>
+		           <variableFiles>
+		           <!--    <variableFile>${project.basedir}/src/main/resources/environment_variables.py</variableFile> -->
+		           </variableFiles>
+		           <variables>
+		               <variable>BROWSER:${robot.browser}</variable>-->
+		               <variable>REMOTE_URL:${robot.remote_url}</variable>
+		               <variable>MAIN_URL:${robot.main.url}</variable>
+		               <variable>ORDER_URL:${robot.order.url}</variable>
+		               <variable>CUSTOMER_SERVICE_URL:${robot.customer_rest_url}</variable>
+		               <variable>CATALOG_SERVICE_URL:${robot.catalog_rest_url}</variable>
+					   <variable>DESIRED_CAPABILITIES:${robot.desired_capabilities}</variable>
+		          </variables>
+		          </configuration>
+		        </plugin>
+		      </plugins>
+		   </build>
+	  
+      </profile>
+	  <profile>
+		  <id>zap</id>
+		  <properties>
+			  <robot.desired_capabilities>{"proxy":{"proxyType":"manual","httpProxy":"${robot.http_proxy_host}:${robot.http_proxy_port}"}}</robot.desired_capabilities>
+			  <robot.http_proxy_port>8000</robot.http_proxy_port>
+			  <robot.http_proxy_host>localhost</robot.http_proxy_host>
+		  </properties>
+		  <build>
+		  <plugins>
+			  <plugin>
+				  <groupId>br.com.softplan.security.zap</groupId>
+				  <artifactId>zap-maven-plugin</artifactId>
+				  <version>1.2.1-0</version>
+				  <configuration>
+					  <targetUrl>${robot.main.url}</targetUrl>
+					  <zapPort>${robot.http_proxy_port}</zapPort>
+					  <zapHost>${robot.http_proxy_host}</zapHost>
+					  <activeScanStartingPointUrl>${robot.main.url}</activeScanStartingPointUrl>
+					  <shouldStartNewSession>false</shouldStartNewSession>
+				  </configuration>
+				  <executions>
+					  <execution>
+						  <id>selenium-analyze</id>
+						  <phase>post-integration-test</phase>
+						  <goals><goal>seleniumAnalyze</goal></goals>
+					  </execution>
+				  </executions>
+			  </plugin>
+		  </plugins>
+		  </build>
+
+	  </profile>
+
+  </profiles>
+
+</project>

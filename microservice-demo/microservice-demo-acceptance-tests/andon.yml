@@ -1,0 +1,58 @@
+general:
+  whitelist: true
+  pipeline_base_name: Microservice Acceptance
+  dependency:
+   - Catalog [PostStage]
+   - Customer [PostStage]
+   - Order [IntegrationTests]
+   - Zuul [Compile]
+
+acceptance_testing:
+  compose_file_path: /src/test/resources
+  compose_file_name: docker-compose.yml
+
+  tests:
+    go_cd_agent_props:
+      - java:8
+      - maven
+    type: parallel
+    test_services:
+      owasp_zap: true
+      selenium_grid: true
+      service_virtualization: false
+    commands:
+      - test_commands:
+        - mvn clean -Probot,zap -Drobot.http_proxy_port=8000 -Drobot.http_proxy_host=zap -Drobot.browser=chrome -Drobot.remote_url=http://hub:4444/wd/hub -Drobot.order.url=http://zuul:8080/order/ -Drobot.main.url=http://zuul:8080 -Drobot.catalog_rest_url=http://catalog:8080 -Drobot.customer_rest_url=http://customer:8080 clean install
+      - test_commands:
+        - mvn clean -Probot -Drobot.http_proxy_port=8000 -Drobot.http_proxy_host=zap -Drobot.browser=firefox -Drobot.remote_url=http://hub:4444/wd/hub -Drobot.order.url=http://zuul:8080/order/ -Drobot.main.url=http://zuul:8080 -Drobot.catalog_rest_url=http://catalog:8080 -Drobot.customer_rest_url=http://customer:8080 clean install
+#      - test_commands:
+#        - true
+#      - test_commands:
+#        - mvn -P robot 2
+
+  selenium_grid_browsers:
+    - name: chrome
+      amount: 1
+      version: "latest"
+    - name: firefox
+      amount: 1
+      version: "latest"
+
+#  cron_timer: 0 0 22 ? * MON-FRI
+
+post_stage:
+  go_cd_agent_props:
+    - java:8
+    - maven
+  custom_cmd:
+#    - sudo echo foo
+    - sudo docker tag catalog:$GO_DEPENDENCY_LABEL_CATALOG_MASTER 131.207.26.214:5000/catalog:$GO_PIPELINE_COUNTER.$GO_STAGE_COUNTER
+    - sudo docker push 131.207.26.214:5000/catalog:$GO_PIPELINE_COUNTER.$GO_STAGE_COUNTER
+    - sudo docker tag customer:$GO_DEPENDENCY_LABEL_CUSTOMER_MASTER 131.207.26.214:5000/customer:$GO_PIPELINE_COUNTER.$GO_STAGE_COUNTER
+    - sudo docker push 131.207.26.214:5000/customer:$GO_PIPELINE_COUNTER.$GO_STAGE_COUNTER
+    - sudo docker tag order:$GO_DEPENDENCY_LABEL_ORDER_MASTER 131.207.26.214:5000/order:$GO_PIPELINE_COUNTER.$GO_STAGE_COUNTER
+    - sudo docker push 131.207.26.214:5000/order:$GO_PIPELINE_COUNTER.$GO_STAGE_COUNTER
+#    - sudo docker tag eureka:latest eekamak/eureka:latest
+#    - sudo docker push eekamak/eureka:latest
+    - sudo docker tag zuul:$GO_DEPENDENCY_LABEL_ZUUL_MASTER 131.207.26.214:5000/zuul:$GO_PIPELINE_COUNTER.$GO_STAGE_COUNTER
+    - sudo docker push 131.207.26.214:5000/zuul:$GO_PIPELINE_COUNTER.$GO_STAGE_COUNTER
