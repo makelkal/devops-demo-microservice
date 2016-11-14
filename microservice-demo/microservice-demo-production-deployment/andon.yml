@@ -19,7 +19,7 @@ production:
   type: parallel
   commands:
     - tasks:
-      - cmd: curl 131.207.26.213:8080/jenkins/job/DevOpsDemoProdDeployment/buildWithParameters?par=$GO_DEPENDENCY_LABEL_MICROSERVICE_ACCEPTANCE_MASTER
+      - cmd: curl 131.207.26.213:8080/jenkins/job/DevOpsDemoProdDeployment/buildWithParameters?ImageTag=$GO_DEPENDENCY_LABEL_MICROSERVICE_ACCEPTANCE_MASTER
 #        build_path: .
 #      - cmd: docker 1
 #      job_name: AnsibleJob
