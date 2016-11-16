@@ -29,7 +29,7 @@ production:
   type: parallel
   commands:
     - tasks:
-      - cmd: curl 131.207.26.213:8080/jenkins/job/DevOpsDemoUatDeployment/buildWithParameters?ImageTag=UAT.$GO_DEPENDENCY_LABEL_UAT_DEPLOYMENT_MASTER
+      - cmd: curl 131.207.26.213:8080/jenkins/job/DevOpsDemoUatDeployment/buildWithParameters?ImageTag=UAT.$GO_PIPELINE_COUNTER
 #        build_path: .
 #      - cmd: docker 1
 #      job_name: AnsibleJob
