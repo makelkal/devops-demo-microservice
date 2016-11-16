@@ -32,6 +32,7 @@ integration_testing:
     test_services:
       selenium_grid: false
       service_virtualization: true
+      robot_framework: true
     commands:
       - test_commands:
         - mvn -P robot -Drobot.url=http://order:8080 -Drobot.remote_url=http://hub:4444/wd/hub -Drobot.browser=chrome install
