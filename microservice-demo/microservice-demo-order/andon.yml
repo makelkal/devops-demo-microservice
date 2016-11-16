@@ -10,7 +10,7 @@ compile:
   type: parallel
   commands:
     - tasks:
-      - cmd: mvn clean -Djava.security.egd=file:/dev/./urandom install
+      - cmd: mvn clean -Djava.security.egd=file:/dev/./urandom -Dmaven.test.skip=true install
         build_path: .
       - cmd: docker build -f Dockerfile -t order:$GO_PIPELINE_COUNTER .
         build_path: .
