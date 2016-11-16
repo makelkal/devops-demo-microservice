@@ -1,5 +1,5 @@
 general:
-  whitelist: true
+  whitelist: false
   pipeline_base_name: Customer
 
 compile:
